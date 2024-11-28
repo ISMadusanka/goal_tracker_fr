@@ -252,6 +252,11 @@ class _WavingHandAnimationState extends State<WavingHandAnimation>
   @override
   void initState() {
     super.initState();
+
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<HomeProvider>(context, listen: false).fetchTodayTasks();
+    });
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),

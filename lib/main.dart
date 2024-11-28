@@ -5,6 +5,7 @@ import 'package:habittracker/Static%20Data/colors_file.dart';
 import 'package:habittracker/core/routes.dart';
 import 'package:habittracker/providers/auth_provider.dart';
 import 'package:habittracker/providers/home_provider.dart';
+import 'package:habittracker/providers/task_provider.dart';
 import 'package:habittracker/providers/onboarding_provider.dart';
 import 'package:habittracker/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthProvider(),),
         ChangeNotifierProvider(create: (context) => HomeProvider(),),
         ChangeNotifierProvider(create: (context) => ProfileProvider(),),
+        ChangeNotifierProvider(create: (context) => TaskProvider(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

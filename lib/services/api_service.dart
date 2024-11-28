@@ -28,6 +28,7 @@ class ApiService {
   // Method to add headers with the JWT token
   Future<Map<String, String>> _getHeaders() async {
     final token = await _getToken();
+    print("token"+token.toString());
     return {
       'Content-Type': 'application/json',
       if (token != null) 'Authorization': 'Bearer $token',
