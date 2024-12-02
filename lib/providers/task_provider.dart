@@ -61,6 +61,29 @@ class TaskProvider with ChangeNotifier {
     }
   }
 
+  // Update task status only
+Future<void> updateTaskStatus(String taskId, String status) async {
+  print("taskID: $taskId, status: $status");
+  try {
+    final updatedTask = Task(
+      id: taskId,
+      title: "Placeholder Title", // Provide default values since the API doesn't use them for status updates
+      description: "Placeholder Description",
+      status: status,
+      startDate: DateTime.now(),
+      endDate: DateTime.now(),
+    );
+
+    final response = await _taskService.updateTask(updatedTask);
+
+    print("Task status updated successfully: $response");
+    notifyListeners(); // Notify listeners about the change
+  } catch (e) {
+    print("Failed to update task status: $e");
+  }
+}
+
+
   // Delete a task
   Future<void> deleteTask(String taskId, BuildContext context) async {
     try {

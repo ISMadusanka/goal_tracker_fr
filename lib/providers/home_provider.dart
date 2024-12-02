@@ -45,7 +45,9 @@ class HomeProvider with ChangeNotifier {
       print('Tasks: $tasks');
 
       todayList = tasks.map((task) {
+        print("task:"+task.id);
         return {
+          "_id": task.id,
           "title": task.title,
           "icon": "assets/temp/default_task_icon.svg", // Default icon for tasks
           "subtitle": task.description,
