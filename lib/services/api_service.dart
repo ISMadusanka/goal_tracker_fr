@@ -84,4 +84,11 @@ class ApiService {
   Future<void> clearToken() async {
     await _storage.delete(key: 'jwtToken');
   }
+
+  // Method to check if the user is authenticated
+  Future<bool> isAuthenticated() async {
+    final token = await _getToken();
+    print("token"+token.toString());
+    return token != null;
+  }
 }

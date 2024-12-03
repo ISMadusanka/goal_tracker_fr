@@ -9,6 +9,7 @@ import 'package:habittracker/Screens/authScreens/login_screen.dart';
 import 'package:habittracker/Static%20Data/colors_file.dart';
 import 'package:habittracker/Widgets/dynamicsize.dart';
 import 'package:habittracker/providers/profile_provider.dart';
+import 'package:habittracker/services/api_service.dart';
 import 'package:provider/provider.dart';
 import '../../Static Data/text_styles.dart';
 import '../../Widgets/mainbutton.dart';
@@ -87,7 +88,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                      },),
                                    ),const SizedBox(width: 20,),
                                    Expanded(
-                                     child: mainButton(title: "Log out",onTap: () {
+                                     child: mainButton(title: "Log out",onTap: () async {
+                                      await ApiService().clearToken();
                                        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.loginScreenRoutes, (route) => false);
                                      },),
                                    ),

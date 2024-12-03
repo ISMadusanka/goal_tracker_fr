@@ -16,14 +16,17 @@ class AuthService {
         'phone': number,
       });
 
-      if (response.statusCode == 200) {
-        print("Signup successful");
-        final token = response.headers['authorization'];
-        if (token != null && token.isNotEmpty) {
-          await apiService.setToken(token);
-        } else {
-          print("Warning: No authorization token found in the response headers.");
-        }
+      print("response"+response.headers.toString());
+
+      if (response.statusCode == 201) {
+
+        // final token = response.headers['authorization'];
+
+        // if (token != null && token.isNotEmpty) {
+        //   await ApiService().setToken(token);
+        // } else {
+        //   print("Warning: No authorization token found in the response headers.");
+        // }
         return jsonDecode(response.body);
 
       } else {

@@ -55,7 +55,7 @@ class _TodayTaskState extends State<TodayTask> {
                 final title = task["title"] ?? "No Title";
                 final subtitle = task["subtitle"] ?? "No Description";
                 final endDate = task["endDate"] ?? "No Due Date";
-                bool isCompleted = task["status"]=="done"; // Default value
+                bool isCompleted = task["status"]=="done";
                 
                 print("object task"+task.toString());
 

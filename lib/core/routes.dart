@@ -10,6 +10,7 @@ import 'package:habittracker/Screens/authScreens/otp_screen.dart';
 import 'package:habittracker/Screens/authScreens/resetpass_screen.dart';
 import 'package:habittracker/Screens/authScreens/singup_screen.dart';
 import 'package:habittracker/Screens/bottombar_screen/bottomnav_screen.dart';
+import 'package:habittracker/Screens/bottombar_screen/home_screen.dart';
 import 'package:habittracker/Screens/onboarding_screen.dart';
 import 'package:habittracker/Screens/splash_screen.dart';
 
@@ -58,6 +59,9 @@ class Routes{
       );
       case ChangePassword.changePasswordRoute: return CupertinoPageRoute(
           builder: (context) =>  const ChangePassword()
+      );
+      case HomeScreen.homeScreen: return CupertinoPageRoute(
+          builder: (context) =>  const HomeScreen()
       );
       default: return null;
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:habittracker/services/api_service.dart';
 import '../services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier{
@@ -35,7 +36,7 @@ class AuthProvider with ChangeNotifier{
       );
 
       // Handle the successful signup response here, e.g., navigate to the home screen
-      print("Signup successful: $response");
+       ApiService().setToken(response['token']);
       // Navigator.pushNamedAndRemoveUntil(
       //   context,
       //   '/home', // Replace with your actual home screen route

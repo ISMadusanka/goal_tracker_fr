@@ -42,14 +42,12 @@ class HomeProvider with ChangeNotifier {
       
       final tasks = await _taskService.getTasks();
       
-      print('Tasks: $tasks');
 
       todayList = tasks.map((task) {
-        print("task:"+task.id);
         return {
           "_id": task.id,
           "title": task.title,
-          "icon": "assets/temp/default_task_icon.svg", // Default icon for tasks
+          "icon": task.status=="done"? "assets/temp/walk 1.svg":"assets/temp/sleep 1.svg", // Default icon for tasks
           "subtitle": task.description,
           "endDate": DateFormat.yMMMMd().format(task.endDate),
           "status": task.status,
