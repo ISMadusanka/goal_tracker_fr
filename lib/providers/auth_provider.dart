@@ -26,7 +26,30 @@ class AuthProvider with ChangeNotifier{
 
   final AuthService _authService = AuthService();
 
-  Future<void> signupUser(BuildContext context) async {
+  Future<bool> singinUser(BuildContext context) async {
+    try {
+      final response = await _authService.signIn(
+        loginEmail.text,
+        loginPassword.text,
+      );
+
+      // Handle the successful login response here, e.g., navigate to the home screen
+      ApiService().setToken(response['token']);
+      // Navigator.pushNamedAndRemoveUntil(
+      //   context,
+      //   '/home', // Replace with your actual home screen route
+      //   (route) => false,
+      // );
+      return true;
+    } catch (e) {
+      // Handle any errors, e.g., show an error message
+      print("Login failed: $e");
+      return false;
+      // You could show an error dialog or snack bar here
+    }
+  }
+
+  Future<bool> signupUser(BuildContext context) async {
     try {
       final response = await _authService.signup(
         singUpEmail.text,
@@ -42,9 +65,11 @@ class AuthProvider with ChangeNotifier{
       //   '/home', // Replace with your actual home screen route
       //   (route) => false,
       // );
+      return true;
     } catch (e) {
       // Handle any errors, e.g., show an error message
       print("Signup failed: $e");
+      return false;
       // You could show an error dialog or snack bar here
     }
   }

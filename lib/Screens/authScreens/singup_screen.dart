@@ -90,13 +90,16 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     Row(
 
                       children: [
-                        Expanded(child: mainButton(title: "Sing Up",onTap: () {
+                        Expanded(child: mainButton(title: "Sing Up",onTap: () async {
                           final isValid = _formKey.currentState!.validate();
                           if (isValid) {
                             // Navigator.pushNamedAndRemoveUntil(context, BottomNavScreen.bottomNavRoute, (route) => false);
                             // return;
                              _formKey.currentState!.save();
-                             authProvider.signupUser(context);
+                             bool res= await authProvider.signupUser(context);
+                              if(res){
+                                Navigator.pushNamedAndRemoveUntil(context, BottomNavScreen.bottomNavRoute, (route) => false);
+                              }
                           }
                           //_formKey.currentState!.save();
                         },)),

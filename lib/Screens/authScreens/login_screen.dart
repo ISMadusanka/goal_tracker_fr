@@ -69,13 +69,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     sizeHeight(height: 30,context: context),
                     Row(
                       children: [
-                        Expanded(child: mainButton(title: "Log in",onTap: () {
+                        Expanded(child: mainButton(title: "Log in",onTap: () async{
                           final isValid = _formKey.currentState!.validate();
-                          if (isValid) {
-                            Navigator.pushNamedAndRemoveUntil(context, BottomNavScreen.bottomNavRoute, (route) => false);
-                            return;
-                          }
-                          _formKey.currentState!.save();
+                          // if (isValid) {
+                          //   Navigator.pushNamedAndRemoveUntil(context, BottomNavScreen.bottomNavRoute, (route) => false);
+                          //   return;
+                          // }
+                          // _formKey.currentState!.save();
+
+                           _formKey.currentState!.save();
+                             bool res= await authProvider.singinUser(context);
+                              if(res){
+                                Navigator.pushNamedAndRemoveUntil(context, BottomNavScreen.bottomNavRoute, (route) => false);
+                              }
 
                         },)),
                       ],

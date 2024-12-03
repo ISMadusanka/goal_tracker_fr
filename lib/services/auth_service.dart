@@ -37,4 +37,34 @@ class AuthService {
       return {'error': 'Signup failed', 'details': e.toString()};
     }
   }
+
+  Future<Map<String, dynamic>> signIn(String email, String password) async {
+    try {
+      print("Logging in with email: $email, password: $password");
+
+      final response = await apiService.post('/signin', {
+        'email': email,
+        'password': password,
+      });
+
+
+      if (response.statusCode == 201) {
+
+        // final token = response.headers['authorization'];
+
+        // if (token != null && token.isNotEmpty) {
+        //   await ApiService().setToken(token);
+        // } else {
+        //   print("Warning: No authorization token found in the response headers.");
+        // }
+        return jsonDecode(response.body);
+
+      } else {
+        throw Exception("Failed to login: ${response.body}");
+      }
+    } catch (e) {
+      print("Login failed: $e");
+      return {'error': 'Login failed', 'details': e.toString()};
+    }
+  }
 }

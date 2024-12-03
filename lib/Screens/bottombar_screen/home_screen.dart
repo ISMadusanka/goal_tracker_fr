@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: TextSpan(
                                     children: [
                                   TextSpan(text: "Hello,\n",style: TextStyles.heading1),
-                                  TextSpan(text: "Ronald richards",style: TextStyles.heading1),
+                                  TextSpan(text: "Welcome Back!",style: TextStyles.heading1),
                                 ])),
                             WavingHandAnimation()
                           ],
