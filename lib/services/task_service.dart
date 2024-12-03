@@ -44,25 +44,31 @@ class TaskService {
     }
   }
 
-  Future<Task> updateTask(Task task) async {
-    try {
-      final response = await apiService.put('/tasks/${task.id}', {
-        'title': task.title,
-        'description': task.description,
-        'status': task.status,
-        'startDate': task.startDate.toIso8601String(),
-        'endDate': task.endDate.toIso8601String(),
-      });
-      if (response.statusCode == 200) {
-        return Task.fromJson(jsonDecode(response.body));
+ Future<Task> updateTask(Task task) async {
+  try {
+    final requestBody = {
+      'status': task.status,
+      // Include any other fields you wish to update, or keep it minimal if updating only status
+    };
+
+    final response = await apiService.put('/updatetask/${task.id}', requestBody);
+
+    if (response.statusCode == 200) {
+      final responseBody = jsonDecode(response.body);
+      if (responseBody['data'] != null) {
+        return Task.fromJson(responseBody['data']); // Access the 'data' field
       } else {
-        throw Exception('Failed to update task: ${response.body}');
+        throw Exception('Failed to parse response data: ${response.body}');
       }
-    } catch (e) {
-      print('Error updating task: $e');
-      throw Exception('Failed to update task');
+    } else {
+      throw Exception('Failed to update task: ${response.body}');
     }
+  } catch (e) {
+    print('Error updating task: $e');
+    throw Exception('Failed to update task');
   }
+}
+
 
   Future<void> deleteTask(String id) async {
     try {

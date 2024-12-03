@@ -55,14 +55,18 @@ class _TodayTaskState extends State<TodayTask> {
                 final title = task["title"] ?? "No Title";
                 final subtitle = task["subtitle"] ?? "No Description";
                 final endDate = task["endDate"] ?? "No Due Date";
-                final isCompleted = task["completed"] ?? false;
+                bool isCompleted = task["status"]=="done"; // Default value
+                
+                print("object task"+task.toString());
 
                 return GestureDetector(
                   onTap: () {
+                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => TaskDetailsScreen(
+
                           taskId: taskId, // Pass taskId
                           title: title,
                           subtitle: subtitle,

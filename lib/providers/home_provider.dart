@@ -51,6 +51,8 @@ class HomeProvider with ChangeNotifier {
           "title": task.title,
           "icon": "assets/temp/default_task_icon.svg", // Default icon for tasks
           "subtitle": task.description,
+          "endDate": DateFormat.yMMMMd().format(task.endDate),
+          "status": task.status,
         };
       }).toList();
     } catch (e) {
