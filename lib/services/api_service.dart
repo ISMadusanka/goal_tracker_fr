@@ -91,4 +91,22 @@ class ApiService {
     print("token"+token.toString());
     return token != null;
   }
+
+  Future<void> setUser(String name, String email, String phone) async {
+    await _storage.write(key: 'name', value: name);
+    await _storage.write(key: 'email', value: email);
+    await _storage.write(key: 'phone', value: phone);
+  }
+
+  //get user as a json
+  Future<Map<String, dynamic>> getUser() async {
+    final name = await _storage.read(key: 'name');
+    final email = await _storage.read(key: 'email');
+    final phone = await _storage.read(key: 'phone');
+    return {
+      'name': name,
+      'email': email,
+      'phone': phone,
+    };
+  }
 }

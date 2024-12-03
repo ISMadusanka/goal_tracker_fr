@@ -35,6 +35,8 @@ class AuthProvider with ChangeNotifier{
 
       // Handle the successful login response here, e.g., navigate to the home screen
       ApiService().setToken(response['token']);
+      print("response"+response.toString());
+      ApiService().setUser(response["data"]["name"], response["data"]["email"], response["data"]["phone"]);
       // Navigator.pushNamedAndRemoveUntil(
       //   context,
       //   '/home', // Replace with your actual home screen route
