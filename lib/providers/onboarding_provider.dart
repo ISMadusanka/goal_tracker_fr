@@ -4,9 +4,9 @@ import 'package:habittracker/Static%20Data/images.dart';
 class OnBoardingProvider with ChangeNotifier{
 
   List onBoardingData = [
-    {"image": ImagesPath.onBoarding1,"title" : "Improve your health with habit tracking","subTitle":"Improve your health with habit tracking from eating more nutritious foods"},
-    {"image": ImagesPath.onBoarding2,"title" : "The habit tracking method that really works","subTitle":"The habit tracking method that will help you achieve your wildest dreams"},
-    {"image": ImagesPath.onBoarding3,"title" : "Tracking can help you make lasting changes","subTitle":"Habit tracking can help you make lasting changes by building routines"},
+    {"image": ImagesPath.onBoarding1,"title" : "Set Your Goals, One Step at a Time","subTitle":"Empower yourself to define clear objectives and visualize your progress"},
+    {"image": ImagesPath.onBoarding2,"title" : "Stay on Track with Smart Insights","subTitle":"Get personalized plans, reminders, and insights to achieve your milestones"},
+    {"image": ImagesPath.onBoarding3,"title" : "Celebrate Every Achievement","subTitle":"Track your journey and celebrate your success with every goal you accomplish"},
   ];
 
   int currentIndex = 0;

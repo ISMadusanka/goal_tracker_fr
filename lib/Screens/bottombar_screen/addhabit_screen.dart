@@ -28,13 +28,13 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
         padding: const EdgeInsets.all(12.0),
         child: Row(
           children: [
-            Expanded(child: mainButton(title: "Create custom habit",onTap: () {
+            Expanded(child: mainButton(title: "Create custom goal",onTap: () {
               Navigator.pushNamed(context, CreateHabit.createHabitRoute);
             },))
           ],
         ),
       ),
-        appBar:  const MainAppBar(title: "Add new habit",),
+        appBar:  const MainAppBar(title: "Add new goal",),
         backgroundColor: AppColors.bgColor,
         body: ListView.separated(
            physics: const BouncingScrollPhysics(),
