@@ -47,7 +47,7 @@ class HomeProvider with ChangeNotifier {
         return {
           "_id": task.id,
           "title": task.title,
-          "icon": task.status=="done"? "assets/logos/AppLogo.svg":"assets/icons/progress.svg", // Default icon for tasks
+          "icon": task.status=="done"? "assets/temp/walk 1.svg":"assets/temp/sleep 1.svg", // Default icon for tasks
           "subtitle": task.description,
           "endDate": DateFormat.yMMMMd().format(task.endDate),
           "status": task.status,

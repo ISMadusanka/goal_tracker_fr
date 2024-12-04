@@ -26,13 +26,18 @@ class TaskService {
 
   Future<Task> createTask(Task task) async {
     try {
+      print("TTT"+task.title+ task.description+ task.status+ task.startDate.toIso8601String()+ task.endDate.toIso8601String());
+
       final response = await apiService.post('/create', {
         'title': task.title,
         'description': task.description,
         'status': task.status,
         'startDate': task.startDate.toIso8601String(),
         'endDate': task.endDate.toIso8601String(),
+        'user' :'674f07a4fa257c22c4290009'
       });
+
+
       if (response.statusCode == 201) {
         return Task.fromJson(jsonDecode(response.body));
       } else {

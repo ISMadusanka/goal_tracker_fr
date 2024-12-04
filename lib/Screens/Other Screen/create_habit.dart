@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../Static Data/text_styles.dart';
 import '../../Widgets/mainbutton.dart';
 import '../../Widgets/mainappbar.dart';
+import '../bottombar_screen/bottomnav_screen.dart';
 
 class CreateHabit extends StatefulWidget {
   static const String createHabitRoute = "/createHabit";
@@ -75,13 +76,13 @@ class _CreateHabitState extends State<CreateHabit> {
                   ),
                   sizeHeight(height: 28, context: context),
                   Text(
-                    "Habit added successfully",
+                    "Goal added successfully",
                     style: TextStyles.heading1,
                     textAlign: TextAlign.center,
                   ),
                   sizeHeight(height: 13, context: context),
                   Text(
-                    "You have successfully created a new habit. Go to Home to continue your journey.",
+                    "You have successfully created a new Goal. Go to Home to continue your journey.",
                     style: TextStyles.subTitle,
                     textAlign: TextAlign.center,
                   ),
@@ -89,11 +90,10 @@ class _CreateHabitState extends State<CreateHabit> {
                   mainButton(
                     title: "Go to Home",
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        '/home', // Replace with your home screen route.
-                        (route) => false,
-                      );
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+            BottomNavScreen.bottomNavRoute,
+            (route) => false,
+          );
                     },
                   ),
                 ],
@@ -104,7 +104,7 @@ class _CreateHabitState extends State<CreateHabit> {
       );
     }).catchError((e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Failed to create habit: $e")),
+        SnackBar(content: Text("Failed to create Goal: $e")),
       );
     });
   }
@@ -129,7 +129,7 @@ class _CreateHabitState extends State<CreateHabit> {
         ),
       ),
       appBar: const MainAppBar(
-        title: "Create custom habit",
+        title: "Create custom Goal",
         isBack: true,
       ),
       backgroundColor: AppColors.bgColor,
@@ -139,7 +139,7 @@ class _CreateHabitState extends State<CreateHabit> {
           child: Column(
             children: [
               mainTextField(
-                hintText: "Name of habit",
+                hintText: "Name of Goal",
                 controller: taskProvider.taskTitle,
               ),
               sizeHeight(height: 16, context: context),
@@ -164,7 +164,7 @@ class _CreateHabitState extends State<CreateHabit> {
                     const SizedBox(height: 10),
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 8, // Replace with the actual icon count.
+                      itemCount: 8, 
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -191,7 +191,7 @@ class _CreateHabitState extends State<CreateHabit> {
                             width: 30,
                             child: Center(
                               child: Text(
-                                'Icon $index', // Replace with actual icons.
+                                'Icon $index', 
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),

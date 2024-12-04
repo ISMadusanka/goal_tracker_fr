@@ -19,6 +19,8 @@ class ApiService {
 
   // Base URL for the API
   final String _baseUrl = 'https://goal-tracker-be.vercel.app';
+  //final String _baseUrl = 'http://localhost:5000';
+
 
   // Method to get the JWT token from secure storage
   Future<String?> _getToken() async {
@@ -45,14 +47,31 @@ class ApiService {
 
   // Example of a POST request
   Future<http.Response> post(String endpoint, Map<String, dynamic> data) async {
-    final headers = await _getHeaders();
-    final url = Uri.parse('$_baseUrl$endpoint');
-    final response = await http.post(
-      url,
-      headers: headers,
-      body: jsonEncode(data),
-    );
-    return response;
+    print("data"+data.toString());
+
+    try {
+      final headers = await _getHeaders();
+      final url = Uri.parse('$_baseUrl$endpoint');
+      final response = await http.post(
+        url,
+        headers: headers,
+        body: jsonEncode(data),
+      );
+      print("response"+response.toString());
+      return response;
+    } catch (e) {
+      print("error"+e.toString());
+      return http.Response("error", 500);
+    }
+    // final headers = await _getHeaders();
+    // final url = Uri.parse('$_baseUrl$endpoint');
+    // final response = await http.post(
+    //   url,
+    //   headers: headers,
+    //   body: jsonEncode(data),
+    // );
+    // print("response"+response.toString());
+    // return response;
   }
 
   // Example of a PUT request

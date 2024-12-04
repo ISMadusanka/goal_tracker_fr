@@ -17,7 +17,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
 
@@ -35,19 +36,31 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     // Check authentication and navigate
     Future.delayed(const Duration(seconds: 3), () async {
-      final isAuthenticated = await ApiService().isAuthenticated();
-      if (isAuthenticated) {
-        // Navigate to HomeScreen if authenticated
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          BottomNavScreen.bottomNavRoute, // Replace with your home screen route
-          (route) => false,
-        );
-      } else {
-        // Navigate to OnBoardingScreen if not authenticated
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          OnBoardingScreen.onBoardingRoute,
-          (route) => false,
-        );
+      try {
+        print("Checking authentication...");
+        final isAuthenticated = await ApiService().isAuthenticated();
+        print("Authentication status: $isAuthenticated");
+
+        if (isAuthenticated) {
+          // Navigate to HomeScreen if authenticated
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            BottomNavScreen.bottomNavRoute,
+            (route) => false,
+          );
+        } else {
+          // Navigate to OnBoardingScreen if not authenticated
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            OnBoardingScreen.onBoardingRoute,
+            (route) => false,
+          );
+        }
+      } catch (e, stackTrace) {
+        print("Error occurred: $e");
+        print("StackTrace: $stackTrace");
+         Navigator.of(context).pushNamedAndRemoveUntil(
+            OnBoardingScreen.onBoardingRoute,
+            (route) => false,
+          );
       }
     });
   }
@@ -72,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           ),
           const SizedBox(height: 12),
           Text(
-            "Habit Tracker App",
+            "Goal Tracker",
             style: TextStyles.heading1,
           ),
           const Row(),
